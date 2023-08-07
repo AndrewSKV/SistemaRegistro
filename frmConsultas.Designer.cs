@@ -57,6 +57,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Anchor = AnchorStyles.None;
             groupBox1.Controls.Add(lbNombreMayorEdad);
             groupBox1.Controls.Add(lbPromedioEdad);
             groupBox1.Controls.Add(lbNumeroMujeres);
@@ -146,6 +147,7 @@
             // 
             // tabControl1
             // 
+            tabControl1.Anchor = AnchorStyles.None;
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Location = new Point(12, 112);
@@ -156,6 +158,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.BackColor = SystemColors.GradientInactiveCaption;
             tabPage1.Controls.Add(Nombres_Completos);
             tabPage1.Controls.Add(label6);
             tabPage1.Location = new Point(4, 24);
@@ -164,7 +167,6 @@
             tabPage1.Size = new Size(836, 401);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Todos los nombres";
-            tabPage1.UseVisualStyleBackColor = true;
             // 
             // Nombres_Completos
             // 
@@ -186,6 +188,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.BackColor = SystemColors.GradientInactiveCaption;
             tabPage2.Controls.Add(label7);
             tabPage2.Controls.Add(btnBuscar);
             tabPage2.Controls.Add(dgvConsultaIndividual);
@@ -197,7 +200,6 @@
             tabPage2.Size = new Size(836, 401);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Consulta por documentos";
-            tabPage2.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -247,6 +249,7 @@
             // 
             // btnAtras
             // 
+            btnAtras.Anchor = AnchorStyles.None;
             btnAtras.Location = new Point(763, 46);
             btnAtras.Name = "btnAtras";
             btnAtras.Size = new Size(75, 23);
@@ -259,6 +262,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(868, 553);
             ControlBox = false;
             Controls.Add(btnAtras);

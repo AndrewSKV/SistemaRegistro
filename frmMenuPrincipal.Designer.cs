@@ -28,65 +28,110 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            btnConsultas = new Button();
-            btnInsertar = new Button();
+            panelPrincipal = new Panel();
+            menuStrip1 = new MenuStrip();
+            menuToolStripMenuItem = new ToolStripMenuItem();
+            nuevoRegistroToolStripMenuItem = new ToolStripMenuItem();
+            consultasToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator1 = new ToolStripSeparator();
+            adminCenterToolStripMenuItem = new ToolStripMenuItem();
+            salirToolStripMenuItem = new ToolStripMenuItem();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
-            // label1
+            // panelPrincipal
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(96, 22);
-            label1.Name = "label1";
-            label1.Size = new Size(189, 21);
-            label1.TabIndex = 0;
-            label1.Text = "Por favor, elije una opción";
-            label1.TextAlign = ContentAlignment.TopCenter;
+            panelPrincipal.BackColor = SystemColors.GradientInactiveCaption;
+            panelPrincipal.Dock = DockStyle.Fill;
+            panelPrincipal.Location = new Point(0, 0);
+            panelPrincipal.Name = "panelPrincipal";
+            panelPrincipal.Padding = new Padding(135, 150, 100, 100);
+            panelPrincipal.Size = new Size(1447, 687);
+            panelPrincipal.TabIndex = 3;
             // 
-            // btnConsultas
+            // menuStrip1
             // 
-            btnConsultas.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            btnConsultas.Location = new Point(96, 163);
-            btnConsultas.Name = "btnConsultas";
-            btnConsultas.Size = new Size(180, 29);
-            btnConsultas.TabIndex = 1;
-            btnConsultas.Text = "Consultas";
-            btnConsultas.UseVisualStyleBackColor = true;
-            btnConsultas.Click += btnConsultas_Click;
+            menuStrip1.BackColor = SystemColors.ActiveCaption;
+            menuStrip1.Items.AddRange(new ToolStripItem[] { menuToolStripMenuItem, salirToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(1447, 35);
+            menuStrip1.TabIndex = 4;
+            menuStrip1.Text = "menuStrip";
             // 
-            // btnInsertar
+            // menuToolStripMenuItem
             // 
-            btnInsertar.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            btnInsertar.Location = new Point(96, 106);
-            btnInsertar.Name = "btnInsertar";
-            btnInsertar.Size = new Size(180, 30);
-            btnInsertar.TabIndex = 2;
-            btnInsertar.Text = "Insertar Nuevo Registro";
-            btnInsertar.UseVisualStyleBackColor = true;
-            btnInsertar.Click += btnInsertar_Click;
+            menuToolStripMenuItem.BackColor = SystemColors.ActiveCaption;
+            menuToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { nuevoRegistroToolStripMenuItem, consultasToolStripMenuItem, toolStripSeparator1, adminCenterToolStripMenuItem });
+            menuToolStripMenuItem.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            menuToolStripMenuItem.Margin = new Padding(5, 5, 0, 5);
+            menuToolStripMenuItem.Name = "menuToolStripMenuItem";
+            menuToolStripMenuItem.Size = new Size(53, 21);
+            menuToolStripMenuItem.Text = "Menu";
+            // 
+            // nuevoRegistroToolStripMenuItem
+            // 
+            nuevoRegistroToolStripMenuItem.Name = "nuevoRegistroToolStripMenuItem";
+            nuevoRegistroToolStripMenuItem.Size = new Size(167, 22);
+            nuevoRegistroToolStripMenuItem.Text = "Nuevo Registro";
+            nuevoRegistroToolStripMenuItem.Click += nuevoRegistroToolStripMenuItem_Click;
+            // 
+            // consultasToolStripMenuItem
+            // 
+            consultasToolStripMenuItem.Name = "consultasToolStripMenuItem";
+            consultasToolStripMenuItem.Size = new Size(167, 22);
+            consultasToolStripMenuItem.Text = "Consultas";
+            consultasToolStripMenuItem.Click += consultasToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(164, 6);
+            // 
+            // adminCenterToolStripMenuItem
+            // 
+            adminCenterToolStripMenuItem.Name = "adminCenterToolStripMenuItem";
+            adminCenterToolStripMenuItem.Size = new Size(167, 22);
+            adminCenterToolStripMenuItem.Text = "Admin center";
+            // 
+            // salirToolStripMenuItem
+            // 
+            salirToolStripMenuItem.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            salirToolStripMenuItem.Size = new Size(45, 31);
+            salirToolStripMenuItem.Text = "Salir";
+            salirToolStripMenuItem.Click += salirToolStripMenuItem_Click;
             // 
             // frmMenuPP
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(388, 272);
-            Controls.Add(btnInsertar);
-            Controls.Add(btnConsultas);
-            Controls.Add(label1);
+            BackColor = SystemColors.Window;
+            ClientSize = new Size(1447, 687);
+            Controls.Add(menuStrip1);
+            Controls.Add(panelPrincipal);
+            MainMenuStrip = menuStrip1;
             Name = "frmMenuPP";
             ShowIcon = false;
-            Text = "Menu Principal";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "      Sistema de Registro";
+            WindowState = FormWindowState.Maximized;
             FormClosed += frmMenuPP_FormClosed;
             Load += frmMenuPP_Load;
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label label1;
-        private Button btnConsultas;
-        private Button btnInsertar;
+        private Panel panelPrincipal;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem menuToolStripMenuItem;
+        private ToolStripMenuItem nuevoRegistroToolStripMenuItem;
+        private ToolStripMenuItem consultasToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripMenuItem adminCenterToolStripMenuItem;
+        private ToolStripMenuItem salirToolStripMenuItem;
     }
 }

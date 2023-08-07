@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
+using System.Security.Cryptography;
 
 namespace SistemaRegistro
 {
@@ -126,15 +127,9 @@ namespace SistemaRegistro
             };
 
             // Ejecutar el INSERT
-            if (ExecuteNonQuery(consultaInsert, parametros))
-            {
-                return true;
-            }
-            else 
-            { 
-                return false; 
-            }
-            
+            return ExecuteNonQuery(consultaInsert, parametros);
+
+
         }
 
         public DataTable BuscarPersonasPorDocumentos(string numerosDocumento)
@@ -158,6 +153,56 @@ namespace SistemaRegistro
                  {
                     new SQLiteParameter("@Documento", numeroDocumento)
                  };
+
+            DataTable dataTable = new DataTable();
+            dataTable = ExecuteQueryWithParameters(query, parametros);
+            if (dataTable.Rows.Count > 0)
+            {
+                return true;
+            }
+            else { return false; }
+        }
+
+        public bool VerificarUsuario(string Usuario)
+        {
+            string query = "SELECT * FROM Usuarios WHERE User = @Usuario";
+            SQLiteParameter[] parametros = new SQLiteParameter[]
+            {
+                    new SQLiteParameter("@Usuario", Usuario)
+            };
+
+            DataTable dataTable = new DataTable();
+            dataTable = ExecuteQueryWithParameters(query, parametros);
+            if (dataTable.Rows.Count > 0)
+            {
+                return true;
+            } else { return false; }
+
+
+        }
+
+        public bool VerificarPassword(string Password)
+        {
+            string query = "SELECT * FROM Usuarios WHERE Password = @Password";
+            string hash;
+
+            //Convertir contraseña a SHA256 hash
+            using (SHA256 sHA256 = SHA256.Create())
+            {
+                byte[] hashPassword = sHA256.ComputeHash(Encoding.UTF8.GetBytes(Password));
+                StringBuilder sb = new StringBuilder();
+                foreach (byte b in hashPassword)
+                {
+                    sb.Append(b.ToString("x2"));
+                }
+                hash = sb.ToString();
+
+            }
+
+            SQLiteParameter[] parametros = new SQLiteParameter[]
+            {
+                    new SQLiteParameter("@Password", hash)
+            };
 
             DataTable dataTable = new DataTable();
             dataTable = ExecuteQueryWithParameters(query, parametros);

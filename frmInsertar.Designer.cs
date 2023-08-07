@@ -59,6 +59,7 @@
             // 
             // lblText
             // 
+            lblText.Anchor = AnchorStyles.None;
             lblText.AutoSize = true;
             lblText.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             lblText.Location = new Point(117, 42);
@@ -69,6 +70,7 @@
             // 
             // grbInfo
             // 
+            grbInfo.Anchor = AnchorStyles.None;
             grbInfo.Controls.Add(cbGenero);
             grbInfo.Controls.Add(btnAtras);
             grbInfo.Controls.Add(btnLimpiar);
@@ -312,6 +314,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(657, 653);
             ControlBox = false;
             Controls.Add(lblAlert);

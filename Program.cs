@@ -14,9 +14,13 @@ namespace SistemaRegistro
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new frmMenuPP());
-            
-            
+
+
+            //Application.Run(new frmMenuPP());
+            Application.Run(new frmInicioSesion());
+            //Application.Run(new frmInsertar());
+
+
         }
     }
 }
