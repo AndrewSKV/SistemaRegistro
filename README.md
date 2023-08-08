@@ -37,4 +37,10 @@ CREATE TABLE "UsuariosRoles" (
 	FOREIGN KEY("IDUser") REFERENCES "Usuarios"("ID")
 )
 
+CREATE VIEW VistaUsuariosConRoles AS
+SELECT U.User, U.Password, R.IDRol
+FROM Usuarios U
+INNER JOIN UsuariosRoles UR ON U.ID = UR.IDUser
+INNER JOIN Roles R ON UR.IDRol = R.IDRol
+
 
