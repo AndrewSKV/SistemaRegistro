@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SistemaRegistro
+namespace SistemaRegistro.Common
 {
     public class Persona
     {

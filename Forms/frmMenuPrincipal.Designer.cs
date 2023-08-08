@@ -72,27 +72,30 @@
             // nuevoRegistroToolStripMenuItem
             // 
             nuevoRegistroToolStripMenuItem.Name = "nuevoRegistroToolStripMenuItem";
-            nuevoRegistroToolStripMenuItem.Size = new Size(167, 22);
+            nuevoRegistroToolStripMenuItem.Size = new Size(180, 22);
             nuevoRegistroToolStripMenuItem.Text = "Nuevo Registro";
             nuevoRegistroToolStripMenuItem.Click += nuevoRegistroToolStripMenuItem_Click;
             // 
             // consultasToolStripMenuItem
             // 
             consultasToolStripMenuItem.Name = "consultasToolStripMenuItem";
-            consultasToolStripMenuItem.Size = new Size(167, 22);
+            consultasToolStripMenuItem.Size = new Size(180, 22);
             consultasToolStripMenuItem.Text = "Consultas";
             consultasToolStripMenuItem.Click += consultasToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(164, 6);
+            toolStripSeparator1.Size = new Size(177, 6);
             // 
             // adminCenterToolStripMenuItem
             // 
+            adminCenterToolStripMenuItem.Enabled = false;
             adminCenterToolStripMenuItem.Name = "adminCenterToolStripMenuItem";
-            adminCenterToolStripMenuItem.Size = new Size(167, 22);
+            adminCenterToolStripMenuItem.Size = new Size(180, 22);
             adminCenterToolStripMenuItem.Text = "Admin center";
+            adminCenterToolStripMenuItem.Visible = false;
+            adminCenterToolStripMenuItem.Click += adminCenterToolStripMenuItem_Click;
             // 
             // salirToolStripMenuItem
             // 

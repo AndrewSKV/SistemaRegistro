@@ -31,7 +31,6 @@
             lblText = new Label();
             grbInfo = new GroupBox();
             cbGenero = new ComboBox();
-            btnAtras = new Button();
             btnLimpiar = new Button();
             btnGuardar = new Button();
             tbEdad = new TextBox();
@@ -72,7 +71,6 @@
             // 
             grbInfo.Anchor = AnchorStyles.None;
             grbInfo.Controls.Add(cbGenero);
-            grbInfo.Controls.Add(btnAtras);
             grbInfo.Controls.Add(btnLimpiar);
             grbInfo.Controls.Add(btnGuardar);
             grbInfo.Controls.Add(tbEdad);
@@ -111,19 +109,9 @@
             cbGenero.TabIndex = 22;
             cbGenero.SelectedIndexChanged += cbGenero_SelectedIndexChanged;
             // 
-            // btnAtras
-            // 
-            btnAtras.Location = new Point(518, 331);
-            btnAtras.Name = "btnAtras";
-            btnAtras.Size = new Size(75, 23);
-            btnAtras.TabIndex = 20;
-            btnAtras.Text = "Atrás";
-            btnAtras.UseVisualStyleBackColor = true;
-            btnAtras.Click += btnAtras_Click;
-            // 
             // btnLimpiar
             // 
-            btnLimpiar.Location = new Point(437, 331);
+            btnLimpiar.Location = new Point(482, 331);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(75, 23);
             btnLimpiar.TabIndex = 19;
@@ -133,7 +121,7 @@
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(356, 331);
+            btnGuardar.Location = new Point(371, 331);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(75, 23);
             btnGuardar.TabIndex = 18;
@@ -352,7 +340,6 @@
         private TextBox tbEdad;
         private Label label9;
         private Label label10;
-        private Button btnAtras;
         private Button btnLimpiar;
         private Button btnGuardar;
         private Label lblAlert;

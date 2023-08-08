@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 
-namespace SistemaRegistro
+namespace SistemaRegistro.Common
 {
     public class Tests
     {

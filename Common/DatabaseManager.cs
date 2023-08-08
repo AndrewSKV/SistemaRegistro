@@ -6,15 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.Security.Cryptography;
+using System.Security;
 
-namespace SistemaRegistro
+namespace SistemaRegistro.Common
 {
     public class DatabaseManager : IDisposable
     {
         private readonly string connectionString;
         private SQLiteConnection connection;
 
-        public static string RutaDB { get; set; } = "D:\\SQLite\\bds\\SistemaRegistro.db";
+        public static string RutaDB { get; set; } = Path.Combine(Application.StartupPath, "SistemaRegistro.db");
 
         public DatabaseManager(string dbFilePath)
         {
@@ -98,7 +99,7 @@ namespace SistemaRegistro
             string query = "SELECT * FROM Personas;";
             CloseConnection();
             return ExecuteQueryWithParameters(query);
-            
+
         }
 
         public void Dispose()
@@ -141,7 +142,7 @@ namespace SistemaRegistro
                 return dataTable; // DataTable vacío si no se proporcionan documentos
             }
 
-            string query = $"SELECT * FROM Personas WHERE Documento IN ({numerosDocumento.Trim()})";          
+            string query = $"SELECT * FROM Personas WHERE Documento IN ({numerosDocumento.Trim()})";
             return ExecuteQueryWithParameters(query);
         }
 
@@ -165,7 +166,7 @@ namespace SistemaRegistro
 
         public bool VerificarUsuario(string Usuario)
         {
-            string query = "SELECT * FROM Usuarios WHERE User = @Usuario";
+            string query = "SELECT * FROM VistaUsuariosConRoles WHERE User = @Usuario";
             SQLiteParameter[] parametros = new SQLiteParameter[]
             {
                     new SQLiteParameter("@Usuario", Usuario)
@@ -176,14 +177,15 @@ namespace SistemaRegistro
             if (dataTable.Rows.Count > 0)
             {
                 return true;
-            } else { return false; }
+            }
+            else { return false; }
 
 
         }
 
         public bool VerificarPassword(string Password)
         {
-            string query = "SELECT * FROM Usuarios WHERE Password = @Password";
+            string query = "SELECT * FROM VistaUsuariosConRoles WHERE Password = @Password";
             string hash;
 
             //Convertir contraseña a SHA256 hash
@@ -211,6 +213,92 @@ namespace SistemaRegistro
                 return true;
             }
             else { return false; }
+        }
+
+        public bool ActualizarRegistro(string ColumnName, string nuevoValor, string ID)
+        {
+            string updateQuery = $"UPDATE Personas SET {ColumnName} = @NuevoValor WHERE Documento = @ID";
+            SQLiteParameter[] parametros = new SQLiteParameter[]
+            {
+                    new SQLiteParameter("@NuevoValor", nuevoValor),
+                    new SQLiteParameter("@ID", ID)
+            };
+
+            return ExecuteNonQuery(updateQuery, parametros);
+        }
+
+        public bool IngresarNuevoUsuario(string Username, string Password, string Role)
+        {
+            string hash;
+
+            //Convertir contraseña a SHA256 hash
+            using (SHA256 sHA256 = SHA256.Create())
+            {
+                byte[] hashPassword = sHA256.ComputeHash(Encoding.UTF8.GetBytes(Password));
+                StringBuilder sb = new StringBuilder();
+                foreach (byte b in hashPassword)
+                {
+                    sb.Append(b.ToString("x2"));
+                }
+                hash = sb.ToString();
+
+            }
+
+            //Ejecutar INSERT en Usuarios
+            string query = "INSERT INTO Usuarios (User, Password) VALUES (@Usuario, @Password)";
+            SQLiteParameter[] parametros = new SQLiteParameter[]
+            {
+                    new SQLiteParameter("@Usuario", Username),
+                    new SQLiteParameter("@Password", hash),
+            };
+            bool InsertUsuarioRolExitoso;
+            bool InsertUsuarioExitoso = ExecuteNonQuery(query, parametros);
+
+            if (InsertUsuarioExitoso)
+            {
+                //Tomar el ID del nuevo Usuario
+                query = "SELECT ID FROM Usuarios WHERE User = @Usuario";
+                DataTable dtUserID = ExecuteQueryWithParameters(query, parametros);
+
+                //Insertar relación Usuario-Rol en la tabla UsuariosRoles
+                query = "INSERT INTO UsuariosRoles (IDUser, IDRol) VALUES (@IDUser, @IDRol)";
+                parametros = new SQLiteParameter[]
+                {
+                    new SQLiteParameter("@IDUser", dtUserID.Rows[0][0].ToString),
+                    new SQLiteParameter("@IDRol", Role),
+                };
+                InsertUsuarioRolExitoso = ExecuteNonQuery(query, parametros);
+            }
+            else
+            {
+                return false;
+            }
+
+            return InsertUsuarioExitoso & InsertUsuarioRolExitoso;
+
+        }
+
+        public bool EliminarRegistro(string Documento)
+        {
+            string query = "DELETE FROM Personas WHERE Documento = @Documento";
+            SQLiteParameter[] parametros = new SQLiteParameter[]
+            {
+                    new SQLiteParameter("@Documento", Documento)
+            };
+
+            return ExecuteNonQuery(query, parametros);
+        }
+
+        public string ObtenerRolUsuario(string User)
+        {
+            string query = "SELECT IDRol FROM VistaUsuariosConRoles WHERE User = @User";
+            SQLiteParameter[] parametros = new SQLiteParameter[]
+            {
+                    new SQLiteParameter("@User", User)
+            };
+
+            DataTable dataTable = ExecuteQueryWithParameters(query, parametros);
+            return dataTable.Rows[0][0].ToString();
         }
     }
 }

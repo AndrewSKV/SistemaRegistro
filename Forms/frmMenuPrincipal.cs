@@ -9,9 +9,14 @@ namespace SistemaRegistro
 
     {
         private bool cerrarDesdeBotonSalir = false;
-        public frmMenuPP()
+        public frmMenuPP(string Rol)
         {
             InitializeComponent();
+            if (Rol == "admin")
+            {
+                adminCenterToolStripMenuItem.Enabled = true;
+                adminCenterToolStripMenuItem.Visible = true;
+            }
         }
 
 
@@ -62,6 +67,17 @@ namespace SistemaRegistro
             cerrarDesdeBotonSalir = true;
             this.Close();
 
+        }
+
+        private void adminCenterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAdminCenter frmAdminCenter = new frmAdminCenter();
+            frmAdminCenter.TopLevel = false;
+            frmAdminCenter.FormBorderStyle = FormBorderStyle.None;
+            frmAdminCenter.Dock = DockStyle.Fill;
+            panelPrincipal.Controls.Add(frmAdminCenter);
+            frmAdminCenter.BringToFront();
+            frmAdminCenter.Show();
         }
     }
 }

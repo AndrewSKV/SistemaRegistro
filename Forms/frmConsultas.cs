@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SistemaRegistro.Common;
 
 namespace SistemaRegistro
 {
@@ -57,12 +58,5 @@ namespace SistemaRegistro
             dgvConsultaIndividual.ScrollBars = ScrollBars.Both;
         }
 
-        private void btnAtras_Click(object sender, EventArgs e)
-        {
-            frmMenuPP frmMenu = new frmMenuPP();
-            this.Close();
-            frmMenu.Show();
-
-        }
     }
 }

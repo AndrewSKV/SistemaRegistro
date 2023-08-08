@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SistemaRegistro.Common;
 
 namespace SistemaRegistro
 {
@@ -25,7 +26,8 @@ namespace SistemaRegistro
 
             if (databaseManager.VerificarUsuario(tbUsuario.Text) & databaseManager.VerificarPassword(tbPassword.Text))
             {
-                frmMenuPP frmMenuPP = new frmMenuPP();
+                string rol = databaseManager.ObtenerRolUsuario(tbUsuario.Text);
+                frmMenuPP frmMenuPP = new frmMenuPP(rol);
                 frmMenuPP.Show();
                 this.Hide();
             }

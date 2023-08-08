@@ -47,7 +47,6 @@
             dgvConsultaIndividual = new DataGridView();
             label5 = new Label();
             tbDocumento = new TextBox();
-            btnAtras = new Button();
             groupBox1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -247,17 +246,6 @@
             tbDocumento.Size = new Size(181, 23);
             tbDocumento.TabIndex = 0;
             // 
-            // btnAtras
-            // 
-            btnAtras.Anchor = AnchorStyles.None;
-            btnAtras.Location = new Point(763, 46);
-            btnAtras.Name = "btnAtras";
-            btnAtras.Size = new Size(75, 23);
-            btnAtras.TabIndex = 3;
-            btnAtras.Text = "Atrás";
-            btnAtras.UseVisualStyleBackColor = true;
-            btnAtras.Click += btnAtras_Click;
-            // 
             // frmConsultas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -265,7 +253,6 @@
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(868, 553);
             ControlBox = false;
-            Controls.Add(btnAtras);
             Controls.Add(tabControl1);
             Controls.Add(groupBox1);
             Name = "frmConsultas";
@@ -303,6 +290,5 @@
         private Label lbNumeroMujeres;
         private Label lbNumeroHombres;
         private Label label7;
-        private Button btnAtras;
     }
 }

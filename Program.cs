@@ -18,7 +18,7 @@ namespace SistemaRegistro
 
             //Application.Run(new frmMenuPP());
             Application.Run(new frmInicioSesion());
-            //Application.Run(new frmInsertar());
+            //Application.Run(new frmAdminCenter());
 
 
         }
